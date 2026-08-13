@@ -1,7 +1,30 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api";
 import { useAuth } from "../../context/AuthContext";
-import { User, FileText, Upload, Sparkles, Code2, Award, ArrowRight, CheckCircle2, Compass, Briefcase, Video, MessageSquare, Globe, ExternalLink } from "lucide-react";
+import {
+  User,
+  FileText,
+  Upload,
+  Sparkles,
+  Code2,
+  Award,
+  ArrowRight,
+  CheckCircle2,
+  Compass,
+  Briefcase,
+  Video,
+  MessageSquare,
+  Globe,
+  ExternalLink,
+  TrendingUp,
+  Terminal,
+  ShieldCheck,
+  BookOpen,
+  DollarSign,
+  Layers,
+  FileCode2,
+  Zap,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import JobCard from "../../components/JobCard";
 
@@ -73,10 +96,17 @@ export default function CandidateDashboard() {
           </div>
           <h1 className="text-3xl font-black">Welcome back, {user?.name || "Candidate"}!</h1>
           <p className="text-xs text-indigo-200 mt-1">
-            AI ATS Resume Parser, Voice Practice Interviewer, Real-Time Socket.io Chat Workspace & Global 1-Click Portals.
+            AI Offer Analyzer, Deep ATS Auditor, System Design Studio, Live Mock Video Studio & 1-Click Portals.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
+          <Link
+            to="/candidate/offer-analyzer"
+            className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black px-5 py-3 rounded-2xl transition flex items-center space-x-2 shadow-lg shadow-emerald-500/25"
+          >
+            <DollarSign className="w-4 h-4" />
+            <span>Audit Job Offer Package</span>
+          </Link>
           <Link
             to="/candidate/applications"
             className="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-5 py-3 rounded-2xl transition flex items-center space-x-2 shadow-lg shadow-indigo-500/25"
@@ -135,39 +165,67 @@ export default function CandidateDashboard() {
         </div>
       </div>
 
-      {/* 4 Major Master Feature Command Cards */}
+      {/* Integrated Master AI Acceleration Tools */}
       <h3 className="font-extrabold text-slate-900 text-lg mb-4 flex items-center gap-2">
         <Sparkles className="w-5 h-5 text-indigo-600" />
-        Integrated Master AI Tools & Workspaces
+        Integrated Master AI Workspaces & Acceleration Tools
       </h3>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <FeatureCommandCard
-          title="1. AI ATS Resume Matcher"
-          desc="0-100% precision score, missing skills matrix & tailored cover letter."
-          icon={Sparkles}
-          color="bg-indigo-50 text-indigo-600 border-indigo-200"
-          link="/jobs/mock-1"
+          title="1. AI Offer Letter & Comp Analyzer"
+          desc="4-year comp calculation, tax in-hand estimates & counter-offer script."
+          icon={DollarSign}
+          color="bg-emerald-50 text-emerald-800 border-emerald-200"
+          link="/candidate/offer-analyzer"
         />
         <FeatureCommandCard
-          title="2. Voice Mock Interviewer"
-          desc="Web Speech API mic voice practice with aloud question reader."
+          title="2. ATS Deep Resume Auditor"
+          desc="5-pillar ATS scan & Google XYZ bullet point transformer."
+          icon={FileCode2}
+          color="bg-indigo-50 text-indigo-800 border-indigo-200"
+          link="/candidate/resume-auditor"
+        />
+        <FeatureCommandCard
+          title="3. System Design Whiteboard Studio"
+          desc="Visual node architecture canvas & live AI SPOF resilience audit."
+          icon={Layers}
+          color="bg-purple-50 text-purple-800 border-purple-200"
+          link="/candidate/system-design-studio"
+        />
+        <FeatureCommandCard
+          title="4. Live Video Mock Interview Studio"
+          desc="Camera/mic stream, speech transcription, WPM HUD & AI scorecards."
           icon={Video}
-          color="bg-purple-50 text-purple-600 border-purple-200"
-          link="/candidate/interview-prep"
+          color="bg-amber-50 text-amber-800 border-amber-200"
+          link="/candidate/live-interview"
         />
         <FeatureCommandCard
-          title="3. Socket.io Live Chat"
-          desc="Candidate-Recruiter live messaging & Google Meet video call launcher."
-          icon={MessageSquare}
-          color="bg-emerald-50 text-emerald-600 border-emerald-200"
-          link="/chat/recruiter-1"
+          title="5. Career Leveling & Comp Roadmap"
+          desc="L1-L5 leveling ladder, salary bands in INR/USD & promotion checklists."
+          icon={TrendingUp}
+          color="bg-blue-50 text-blue-800 border-blue-200"
+          link="/candidate/career-roadmap"
         />
         <FeatureCommandCard
-          title="4. Smart Resume Studio"
-          desc="Live PDF resume builder with 1-click export templates."
-          icon={FileText}
-          color="bg-amber-50 text-amber-600 border-amber-200"
-          link="/candidate/resume-builder"
+          title="6. AI Skill Verification & Certificate"
+          desc="Adaptive exams with official cryptographic verified certificates."
+          icon={ShieldCheck}
+          color="bg-rose-50 text-rose-800 border-rose-200"
+          link="/candidate/certification"
+        />
+        <FeatureCommandCard
+          title="7. Spoken English Voice Coach"
+          desc="Mic speech analyzer for behavioral rounds, pacing & fluency."
+          icon={BookOpen}
+          color="bg-cyan-50 text-cyan-800 border-cyan-200"
+          link="/candidate/english-coach"
+        />
+        <FeatureCommandCard
+          title="8. AI Coding & Algorithm Sandbox"
+          desc="Browser code execution engine, test case runner & algorithmic analysis."
+          icon={Terminal}
+          color="bg-teal-50 text-teal-800 border-teal-200"
+          link="/candidate/coding-sandbox"
         />
       </div>
 
@@ -223,7 +281,7 @@ export default function CandidateDashboard() {
           <textarea
             value={skillsInput}
             onChange={(e) => setSkillsInput(e.target.value)}
-            placeholder="React, Node.js, MongoDB, TypeScript, Python..."
+            placeholder="React, Node.js, MongoDB, TypeScript, Python, AWS, Docker, Kubernetes..."
             className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 mb-3"
             rows={3}
           />

@@ -1,7 +1,23 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { Briefcase, User, LogOut, Sparkles, MessageSquare, LayoutDashboard, FileText, Terminal, BookOpen, ShieldCheck } from "lucide-react";
+import NotificationDropdown from "./NotificationDropdown";
+import {
+  Briefcase,
+  User,
+  LogOut,
+  Sparkles,
+  MessageSquare,
+  LayoutDashboard,
+  FileText,
+  Terminal,
+  BookOpen,
+  ShieldCheck,
+  Video,
+  TrendingUp,
+  Search,
+  PlusCircle,
+} from "lucide-react";
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -19,43 +35,81 @@ export default function Navbar() {
             <span className="font-black text-white text-lg tracking-tight leading-none group-hover:text-indigo-400 transition-colors">
               HireHub
             </span>
-            <span className="text-[9px] font-extrabold text-indigo-400 tracking-widest uppercase">Autonomous AI</span>
+            <span className="text-[9px] font-extrabold text-indigo-400 tracking-widest uppercase">
+              Autonomous AI
+            </span>
           </div>
         </Link>
 
-        {/* Navigation Links */}
-        <div className="flex items-center space-x-1 sm:space-x-2 text-xs font-semibold">
+        {/* Center / Navigation Links */}
+        <div className="hidden md:flex items-center space-x-1 text-xs font-semibold text-slate-300">
           <Link
             to="/"
-            className="text-slate-300 hover:text-white px-3 py-2 rounded-xl hover:bg-slate-900 transition"
+            className="hover:text-white px-3 py-2 rounded-xl hover:bg-slate-900 transition"
           >
             Explore Jobs
           </Link>
 
-          {/* Quick Access AI Master Tools Navbar Dropdown / Buttons */}
+          {/* AI Live Mock Video Interview Studio */}
           <Link
-            to="/candidate/english-coach"
-            className="hidden lg:flex items-center space-x-1 text-slate-300 hover:text-indigo-400 px-2.5 py-2 rounded-xl hover:bg-slate-900 transition"
+            to="/candidate/live-interview"
+            className="flex items-center space-x-1.5 hover:text-white px-3 py-2 rounded-xl hover:bg-slate-900 transition text-amber-300"
           >
-            <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
-            <span>English Coach</span>
+            <Video className="w-3.5 h-3.5 text-amber-400" />
+            <span>Live Video Mock</span>
           </Link>
 
+          {/* Career Roadmap */}
           <Link
-            to="/candidate/coding-sandbox"
-            className="hidden lg:flex items-center space-x-1 text-slate-300 hover:text-emerald-400 px-2.5 py-2 rounded-xl hover:bg-slate-900 transition"
+            to="/candidate/career-roadmap"
+            className="flex items-center space-x-1.5 hover:text-white px-3 py-2 rounded-xl hover:bg-slate-900 transition"
           >
-            <Terminal className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Coding Sandbox</span>
+            <TrendingUp className="w-3.5 h-3.5 text-indigo-400" />
+            <span>Career Roadmap</span>
           </Link>
 
+          {/* Recruiter Talent Radar (Visible to recruiters/admins) */}
+          {(user?.role === "recruiter" || user?.role === "admin") && (
+            <Link
+              to="/recruiter/talent-pool"
+              className="flex items-center space-x-1.5 text-indigo-300 hover:text-white px-3 py-2 rounded-xl hover:bg-indigo-950/40 transition border border-indigo-500/30"
+            >
+              <Search className="w-3.5 h-3.5 text-indigo-400" />
+              <span>Talent Radar</span>
+            </Link>
+          )}
+
+          {/* Offer Analyzer */}
           <Link
-            to="/candidate/certification"
-            className="hidden lg:flex items-center space-x-1 text-slate-300 hover:text-amber-400 px-2.5 py-2 rounded-xl hover:bg-slate-900 transition"
+            to="/candidate/offer-analyzer"
+            className="hidden xl:flex items-center space-x-1 hover:text-emerald-400 px-2.5 py-2 rounded-xl hover:bg-slate-900 transition text-emerald-300"
           >
-            <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-            <span>AI Badge</span>
+            <DollarSign className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Offer Analyzer</span>
           </Link>
+
+          {/* System Design */}
+          <Link
+            to="/candidate/system-design-studio"
+            className="hidden xl:flex items-center space-x-1 hover:text-purple-400 px-2.5 py-2 rounded-xl hover:bg-slate-900 transition"
+          >
+            <Layers className="w-3.5 h-3.5 text-purple-400" />
+            <span>System Design</span>
+          </Link>
+
+          {/* Resume Auditor */}
+          <Link
+            to="/candidate/resume-auditor"
+            className="hidden 2xl:flex items-center space-x-1 hover:text-indigo-400 px-2.5 py-2 rounded-xl hover:bg-slate-900 transition"
+          >
+            <FileCode2 className="w-3.5 h-3.5 text-indigo-400" />
+            <span>ATS Auditor</span>
+          </Link>
+        </div>
+
+        {/* Right Actions & Profile */}
+        <div className="flex items-center space-x-2 text-xs font-semibold">
+          {user && <NotificationDropdown />}
 
           {!user && (
             <>
@@ -78,29 +132,39 @@ export default function Navbar() {
             <>
               <Link
                 to="/candidate/applications"
-                className="text-slate-300 hover:text-white px-2.5 py-2 rounded-xl hover:bg-slate-900 transition flex items-center space-x-1 text-xs"
+                className="hidden sm:flex text-slate-300 hover:text-white px-2.5 py-2 rounded-xl hover:bg-slate-900 transition items-center space-x-1"
               >
                 <FileText className="w-3.5 h-3.5 text-indigo-400" />
-                <span className="hidden sm:inline">Applications</span>
+                <span>Applications</span>
               </Link>
               <Link
                 to="/candidate/dashboard"
                 className="bg-indigo-600 hover:bg-indigo-500 text-white px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 shadow-md shadow-indigo-500/20 transition"
               >
                 <LayoutDashboard className="w-3.5 h-3.5 text-indigo-200" />
-                <span>Candidate Command</span>
+                <span className="hidden sm:inline">Candidate Command</span>
+                <span className="sm:hidden">Command</span>
               </Link>
             </>
           )}
 
           {user?.role === "recruiter" && (
-            <Link
-              to="/recruiter/dashboard"
-              className="bg-indigo-600 hover:bg-indigo-500 text-white px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 shadow-md transition"
-            >
-              <LayoutDashboard className="w-3.5 h-3.5" />
-              <span>Recruiter Studio</span>
-            </Link>
+            <>
+              <Link
+                to="/recruiter/post-job"
+                className="hidden sm:flex items-center space-x-1 text-slate-300 hover:text-white px-2.5 py-2 rounded-xl hover:bg-slate-900 transition"
+              >
+                <PlusCircle className="w-3.5 h-3.5 text-purple-400" />
+                <span>Post Job</span>
+              </Link>
+              <Link
+                to="/recruiter/dashboard"
+                className="bg-indigo-600 hover:bg-indigo-500 text-white px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 shadow-md transition"
+              >
+                <LayoutDashboard className="w-3.5 h-3.5" />
+                <span>Recruiter Studio</span>
+              </Link>
+            </>
           )}
 
           {user?.role === "admin" && (

@@ -81,18 +81,32 @@ export default function Home() {
 
   const advancedPlatformFeatures = [
     {
-      title: "AI ATS Resume Parser & Score",
-      desc: "Instant 0-100% precision match score with missing skills matrix & AI Cover Letter.",
-      icon: Sparkles,
-      color: "from-indigo-500 to-purple-600",
-      link: "/jobs/mock-1",
+      title: "Live Mock Video Interview Studio",
+      desc: "Camera & mic video studio with real-time speech transcription, WPM pace HUD, and instant 4-pillar rubric grading.",
+      icon: Video,
+      color: "from-amber-500 to-orange-600",
+      link: "/candidate/live-interview",
     },
     {
-      title: "Voice Mock Interview Simulator",
-      desc: "Web Speech API microphone voice practice with aloud text-to-speech question reader.",
-      icon: Video,
+      title: "Engineering Career & Compensation Roadmap",
+      desc: "Interactive career leveling ladder (L1-L5), salary benchmarks across INR & USD, and promotion milestone checklists.",
+      icon: TrendingUp,
+      color: "from-indigo-500 to-purple-600",
+      link: "/candidate/career-roadmap",
+    },
+    {
+      title: "Recruiter Talent Discovery Radar",
+      desc: "Direct candidate scouting by skill matrix, AI match fit, verified badges, and 1-click Google Calendar invites.",
+      icon: Users,
       color: "from-purple-500 to-pink-600",
-      link: "/candidate/interview-prep",
+      link: "/recruiter/talent-pool",
+    },
+    {
+      title: "AI ATS Resume Parser & Score",
+      desc: "Instant 0-100% precision match score with missing skills matrix & AI tailored Cover Letter.",
+      icon: Sparkles,
+      color: "from-indigo-600 to-blue-600",
+      link: "/jobs/mock-1",
     },
     {
       title: "Real-Time Socket.io Chat Workspace",
